@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SOS FFA</title>
+        <style>
+            body{
+                
+                background-color: rgb(0,0,0);
+                color:white;
+            }
+            #clockContainer{
+                display: block;
+                font-size: 800%;
+                height: 100vh;
+                line-height: 100vh;
+                text-align: center;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div id="clockContainer">
+
+            <span id="clockHour" class="clock">--</span>
+            <span>:</span>
+            <span id="clockMinute" class="clock">--</span>
+            <span>:</span>
+            <span id="clockSecond" class="clock">--</span>
+    </div>
+    <script>
+        
+                function randomIntFromInterval(min, max) { 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+        let hour = randomIntFromInterval(4,72);
+        let min = randomIntFromInterval(0,59);
+        let sec = randomIntFromInterval(0,59);
+        document.onreadystatechange = function(){
+            if (document.readyState == "complete"){
+        document.getElementById("clockHour").innerText = (hour >= 10 ? hour : "0" + hour);
+        document.getElementById("clockMinute").innerText = (min >= 10 ? min : "0" + min);
+        document.getElementById("clockSecond").innerText = (sec >= 10 ? sec : "0" + sec);
+
+            let intervalId = window.setInterval(function(){
+                if (sec == 0){
+                    if (min == 0) {
+                        if (hour == 0){
+                            hour = 72;
+                        }
+                    hour--;
+                    min = 60;
+                    }
+                min--;
+                sec = 60;
+                }
+                sec--;
+                document.getElementById("clockHour").innerText = (hour >= 10 ? hour : "0" + hour);
+                document.getElementById("clockMinute").innerText = (min >= 10 ? min : "0" + min);
+                document.getElementById("clockSecond").innerText = (sec >= 10 ? sec : "0" + sec);
+        }, 1000);
+            
+        }
+        }
+    </script>
+    </body>
+</html>
